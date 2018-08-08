@@ -82,7 +82,6 @@ public class KafkaOffsetTool {
         String brokerList = kafkaParams.get("metadata.broker.list");
         List<String> brokers = new ArrayList<>();
         int port = 9092;
-
         for (String s : brokerList.split(",")) {
             brokers.add(s.split(":")[0]);
             port = Integer.parseInt(s.split(":")[1]);
