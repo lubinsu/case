@@ -1,5 +1,8 @@
 package com.maiyabank;
 
+import com.maiya.threads.SourceA;
+import com.maiya.threads.TestRunnable;
+import com.maiya.threads.TestThread;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -8,9 +11,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CountDownLatch;
 import java.util.function.Supplier;
 
 import com.maiya.lambda.*;
+
+import static java.lang.Thread.sleep;
 
 /**
  * Unit test for simple App.
@@ -93,5 +99,39 @@ public class AppTest
                         .sorted()
                         .reduce((s1, s2) -> s1 + "#" + s2);
         reduced.ifPresent(System.out::println);
+    }
+
+    public void test() throws InterruptedException {
+
+        final CountDownLatch countDownLatch = new CountDownLatch(2);
+
+        SourceA s = new SourceA();
+        TestThread tt = new TestThread(s, countDownLatch);
+        TestRunnable tr = new TestRunnable(s, countDownLatch);
+        Thread t = new Thread(tr);
+        System.out.println("线程1状态：" + t.getState());
+        System.out.println("线程2状态：" + tt.getState());
+        System.out.println("调用线程2");
+        tt.start();
+        System.out.println("线程1状态：" + t.getState());
+        System.out.println("线程2状态：" + tt.getState());
+        System.out.println("调用线程1");
+        t.start();
+        System.out.println("线程1状态：" + t.getState());
+        System.out.println("线程2状态：" + tt.getState());
+
+        for (int i = 0; i < 10; i++) {
+            try {
+                System.out.println("线程1状态：" + t.getState());
+                System.out.println("线程2状态：" + tt.getState());
+                sleep(1000);
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+        countDownLatch.await();
     }
 }
