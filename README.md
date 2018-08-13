@@ -20,4 +20,4 @@
 ###### [kafka](https://github.com/lubinsu/case/tree/master/src/main/java/com/maiya/util/kafka)
 ###### [nio](https://github.com/lubinsu/case/tree/master/src/main/java/com/maiya/util/nio)
 ###### [使用Zookeeper实现的分布式锁](https://github.com/lubinsu/case/tree/master/src/main/java/com/maiya/util/zookeeper)
-###### [排序算法](https://github.com/lubinsu/case/tree/master/src/main/java/com/maiya/util/zookeeper)
+###### [排序算法](https://github.com/lubinsu/case/tree/master/src/main/java/com/maiya/sort)
