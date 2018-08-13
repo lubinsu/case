@@ -5,7 +5,7 @@ import java.util.Arrays;
 /**
  * Created by lubinsu
  * Date: 2018/8/10 16:36
- * Desc: 快速排序：挖坑法、指针交换法
+ * Desc: 快速排序：挖坑法、指针交换法：时间复杂度： O（nlogn）
  */
 public class QuickSort {
     public static void quickSort(int[] arr, int startIndex, int endIndex) {
